@@ -2,7 +2,7 @@
 // // // frontend/src/api/complaintApi.js
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000/api/complaints";
+const API_BASE = "https://smart-campus-backend-iuqo.onrender.com/api/complaints";
 
 // STUDENT: create complaint
 export const createComplaint = (payload) =>

@@ -2,7 +2,7 @@
 
 // frontend/src/services/notificationService.js
 import axios from 'axios';
-const API_BASE = 'http://localhost:5000/api/notifications';
+const API_BASE = 'https://smart-campus-backend-iuqo.onrender.com/api/notifications';
 
 export const getNotificationsForStudent = async (email) => {
   if(!email) throw new Error('email required');

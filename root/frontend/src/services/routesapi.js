@@ -1,5 +1,5 @@
 import axios from "axios";    //frontend/src/services/routesapi.js
-const API_BASE_URL = "http://localhost:5000/api/routes";
+const API_BASE_URL = "https://smart-campus-backend-iuqo.onrender.com/api/routes";
 
 export const fetchRoutes = async () => {
   const res = await axios.get(`${API_BASE_URL}/all`);

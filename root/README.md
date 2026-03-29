@@ -76,7 +76,7 @@ SmartCampusTransit/
    npm run dev
    ```
 
-   The backend API will be available at `http://localhost:5000`
+   The backend API will be available at `https://smart-campus-backend-iuqo.onrender.com`
 
 ## Available Routes
 

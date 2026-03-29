@@ -164,10 +164,10 @@ export default function StudentRoutes({ user }) {
   const loadData = async () => {
     try {
       const [routesRes, driversRes, busesRes, stopsRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/routes/all'),
-        axios.get('http://localhost:5000/api/drivers/all'),
-        axios.get('http://localhost:5000/api/buses/all'),
-        axios.get('http://localhost:5000/api/stops/all')
+        axios.get('https://smart-campus-backend-iuqo.onrender.com/api/routes/all'),
+        axios.get('https://smart-campus-backend-iuqo.onrender.com/api/drivers/all'),
+        axios.get('https://smart-campus-backend-iuqo.onrender.com/api/buses/all'),
+        axios.get('https://smart-campus-backend-iuqo.onrender.com/api/stops/all')
       ]);
 
       setRoutes(routesRes.data);

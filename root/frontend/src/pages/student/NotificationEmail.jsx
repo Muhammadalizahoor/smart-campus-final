@@ -19,7 +19,7 @@
 
 //   const saveGmail = async () => {
 //     try {
-//       await axios.put("http://localhost:5000/api/students/update-gmail", {
+//       await axios.put("https://smart-campus-backend-iuqo.onrender.com/api/students/update-gmail", {
 //         email: storedUser.email,
 //         gmail,
 //       });
@@ -83,7 +83,7 @@ export default function NotificationEmail() {
 
   const saveGmail = async () => {
     try {
-      await axios.put("http://localhost:5000/api/students/update-gmail", {
+      await axios.put("https://smart-campus-backend-iuqo.onrender.com/api/students/update-gmail", {
         email: storedUser.email,
         gmail,
       });

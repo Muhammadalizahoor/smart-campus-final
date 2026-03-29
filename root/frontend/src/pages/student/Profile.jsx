@@ -12,7 +12,7 @@ export default function Profile() {
     const fetchProfile = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/students/profile",
+          "https://smart-campus-backend-iuqo.onrender.com/api/students/profile",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -35,7 +35,7 @@ export default function Profile() {
   const updateGmail = async () => {
     try {
       await axios.put(
-        "http://localhost:5000/api/students/update-gmail",
+        "https://smart-campus-backend-iuqo.onrender.com/api/students/update-gmail",
         { gmail },
         {
           headers: {

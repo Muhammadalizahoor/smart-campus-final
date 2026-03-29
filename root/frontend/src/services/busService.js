@@ -2,7 +2,7 @@
 // frontend/src/services/busService.js
 import axios from "axios";
 
-const API = "http://localhost:5000/api/buses"; // adjust port if needed
+const API = "https://smart-campus-backend-iuqo.onrender.com/api/buses"; // adjust port if needed
 
 // FETCH
 export const fetchBuses = async () => {
@@ -29,5 +29,5 @@ export const updateBus = async (data) => {
 export const deleteBus = async (busId) => {
   if (!busId) throw new Error("busId missing");
 
-  await axios.delete(`http://localhost:5000/api/buses/delete/${busId}`);
+  await axios.delete(`https://smart-campus-backend-iuqo.onrender.com/api/buses/delete/${busId}`);
 };

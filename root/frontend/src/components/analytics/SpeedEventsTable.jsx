@@ -10,7 +10,7 @@ export default function SpeedEventsTable() {
   useEffect(() => {
     const loadEvents = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/speed/events");
+        const res = await axios.get("https://smart-campus-backend-iuqo.onrender.com/api/speed/events");
         const data = res.data.events || [];
         setEvents(data);
         setFilteredEvents(data);

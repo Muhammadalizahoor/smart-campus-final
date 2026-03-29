@@ -18,7 +18,7 @@ import MonthlyOvercrowdStats from "../../components/MonthlyOvercrowdStats";
 import "../../styles/analytics.css";
 
 function OvercrowdingVisual() {
-  const API = "http://localhost:5000";
+  const API = "https://smart-campus-backend-iuqo.onrender.com";
 
   const [buses, setBuses] = useState([]);
 

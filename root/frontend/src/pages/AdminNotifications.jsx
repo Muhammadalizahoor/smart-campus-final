@@ -8,7 +8,7 @@
 //   const [target, setTarget] = useState("ALL");
 
 //   const sendNotification = async () => {
-//     await axios.post("http://localhost:5000/api/notifications/send", {
+//     await axios.post("https://smart-campus-backend-iuqo.onrender.com/api/notifications/send", {
 //       title,
 //       message,
 //       target:"ALL" // ALL / BUS / ROUTE
@@ -58,7 +58,7 @@ export default function AdminNotifications() {
   const [target, setTarget] = useState("ALL");
 
   const sendNotification = async () => {
-    await axios.post("http://localhost:5000/api/notifications/send", {
+    await axios.post("https://smart-campus-backend-iuqo.onrender.com/api/notifications/send", {
       title,
       message,
       target: "ALL",

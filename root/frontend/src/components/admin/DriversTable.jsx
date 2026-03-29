@@ -153,7 +153,7 @@ export default function DriversTable() {
                 rfids={rfids}
                 onSave={async (rfidValue) => {
                     try {
-                        await axios.put("http://localhost:5000/api/drivers/assign-rfid", {
+                        await axios.put("https://smart-campus-backend-iuqo.onrender.com/api/drivers/assign-rfid", {
                             driverId: selectedDriver.driverId || selectedDriver._id,
                             rfid_id: rfidValue 
                         });

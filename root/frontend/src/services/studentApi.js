@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api";   // backend base URL
+const API = "https://smart-campus-backend-iuqo.onrender.com/api";   // backend base URL
 
 
 // ---------------------------

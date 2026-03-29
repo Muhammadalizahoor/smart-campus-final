@@ -1,7 +1,7 @@
 // frontend/src/services/driverService.js
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api/drivers";
+const API_BASE_URL = "https://smart-campus-backend-iuqo.onrender.com/api/drivers";
 
 export const fetchDrivers = async () => {
   const res = await axios.get(`${API_BASE_URL}/all`);

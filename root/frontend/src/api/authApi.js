@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/auth";
+// Localhost hatao aur Render ka backend URL dalo
+const API = "https://smart-campus-backend-iuqo.onrender.com/api/auth";
 
 export const signupUser = async (data) => {
   const res = await axios.post(`${API}/signup`, data);

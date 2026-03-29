@@ -82,7 +82,7 @@ function Occupancy() {
   useEffect(() => {
     async function loadBuses() {
       try {
-        const res = await fetch("http://localhost:5000/api/buses?status=assigned");
+        const res = await fetch("https://smart-campus-backend-iuqo.onrender.com/api/buses?status=assigned");
         const json = await res.json();
         const list = Array.isArray(json) ? json : Array.isArray(json?.buses) ? json.buses : [];
 
@@ -110,7 +110,7 @@ function Occupancy() {
     async function loadTable() {
       try {
         setTableLoading(true);
-        const res = await fetch("http://localhost:5000/api/overcrowding/table");
+        const res = await fetch("https://smart-campus-backend-iuqo.onrender.com/api/overcrowding/table");
         const json = await res.json();
         const rows = toArray(json);
 
@@ -148,10 +148,10 @@ function Occupancy() {
       try {
         setVisualLoading(true);
 
-        const dailyChartUrl = `http://localhost:5000/api/overcrowding/chart?type=daily&busId=${encodeURIComponent(busId)}`;
-        const dailyStatsUrl = `http://localhost:5000/api/overcrowding/daily-stats?busId=${encodeURIComponent(busId)}`;
-        const monthlyChartUrl = `http://localhost:5000/api/overcrowding/chart?type=monthly&busId=${encodeURIComponent(busId)}&month=${encodeURIComponent(selectedMonth)}`;
-        const monthlyStatsUrl = `http://localhost:5000/api/overcrowding/monthly-stats?busId=${encodeURIComponent(busId)}&month=${encodeURIComponent(selectedMonth)}`;
+        const dailyChartUrl = `https://smart-campus-backend-iuqo.onrender.com/api/overcrowding/chart?type=daily&busId=${encodeURIComponent(busId)}`;
+        const dailyStatsUrl = `https://smart-campus-backend-iuqo.onrender.com/api/overcrowding/daily-stats?busId=${encodeURIComponent(busId)}`;
+        const monthlyChartUrl = `https://smart-campus-backend-iuqo.onrender.com/api/overcrowding/chart?type=monthly&busId=${encodeURIComponent(busId)}&month=${encodeURIComponent(selectedMonth)}`;
+        const monthlyStatsUrl = `https://smart-campus-backend-iuqo.onrender.com/api/overcrowding/monthly-stats?busId=${encodeURIComponent(busId)}&month=${encodeURIComponent(selectedMonth)}`;
 
         const [dChartRes, dStatsRes, mChartRes, mStatsRes] = await Promise.all([
           fetch(dailyChartUrl),
@@ -193,7 +193,7 @@ function Occupancy() {
 
     // 1. Fetch AI Summary
     try {
-      const url = `http://localhost:5000/api/overcrowding/report?busId=${encodeURIComponent(busId)}&type=${encodeURIComponent(analysisType)}`;
+      const url = `https://smart-campus-backend-iuqo.onrender.com/api/overcrowding/report?busId=${encodeURIComponent(busId)}&type=${encodeURIComponent(analysisType)}`;
       const res = await fetch(url);
       if (res.ok) {
         fetchedReportData = await res.json();
