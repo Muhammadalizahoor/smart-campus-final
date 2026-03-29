@@ -7,7 +7,7 @@ yarn-error.log*
 lerna-debug.log*
 
 # Dependencies
-node_modules
+node_modules/
 
 # Environment variables
 .env
@@ -16,12 +16,9 @@ node_modules
 .env.test.local
 .env.production.local
 
-# Firebase service account keys
-serviceAccountKey.json
-*-serviceAccountKey.json
-*.json
-!package.json
-!package-lock.json
+# Build folders
+dist/
+build/
 
 # OS files
 .DS_Store
@@ -37,3 +34,4 @@ Thumbs.db
 *.sln
 *.sw?
 
+# NOTE: serviceAccountKey.json is now ALLOWED for 31st March Submission
