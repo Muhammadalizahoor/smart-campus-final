@@ -1,0 +1,20 @@
+.student-sidebar {
+  width: 220px;
+  background: #ffffff;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 80px; /* space for header */
+  border-right: 1px solid #e5e7eb;
+  z-index: 10;
+}
+
+.student-content-wrapper {
+  padding-left: 240px; /* space for the student sidebar */
+  padding-top: 100px; /* space for header */
+  padding-right: 24px;
+  padding-bottom: 30px;
+  min-height: 100vh;
+  background: #f5f7fa;
+}

@@ -1,0 +1,142 @@
+/* Full Background Image */
+.auth-container {
+
+  height: 100vh;
+  width: 100%;
+  background-image: url("../assets/bus_bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Dark overlay for readability */
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* Push form to right side */
+  align-items: center;
+}
+
+.auth-container::before {
+margin: 0%;
+padding: 0%;
+  content: "";
+  position: absolute;
+  inset: 0;
+  
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+/* Right-side form section */
+.auth-form-section {
+  position: relative;
+  z-index: 5;
+  margin-right: 80px;  /* Move to right side perfectly */
+}
+
+/* Glassmorphism Card */
+.auth-form-card {
+  width: 500px;
+  height:650px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 40px 60px;
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    position: relative; /* arrow ke liye reference */
+
+}
+
+/* Title */
+.auth-title {
+  text-align: center;
+  color: #fff;
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+/* For dropdown*/
+.auth-form-card select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+  margin-bottom: 20px;  /* spacing below dropdown */
+   padding-right: 70px;  /* arrow ke liye space */
+   margin-top:12px;
+ 
+}
+
+
+
+/* Form Fields */
+.form-group label {
+  color: #ffffffcc;
+  font-size: 16px;
+ 
+
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.85); /* Light glass */
+  color: black; /* FIX: BLACK TEXT */
+  font-size: 16px;
+  margin-top:12px;
+  margin-bottom: 18px;
+}
+
+.form-group input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Button */
+.submit-btn {
+  padding: 14px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 24px;
+  text-align: center;
+ 
+}
+
+/* Google Button Center */
+.google-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.google-btn img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+/* Login Link */
+.auth-footer {
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+}
+
+.auth-footer a {
+  color: yellow;        /* link color yellow */
+  font-weight: 600;     /* optional bold */
+  text-decoration: none;
+}

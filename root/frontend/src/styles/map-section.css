@@ -1,0 +1,90 @@
+.map-section {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #1a2332;
+  overflow: hidden;
+}
+
+.map-search-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-search-bar svg {
+  color: #94a3b8;
+}
+
+.map-search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  color: #1e293b;
+}
+
+.map-search-bar input::placeholder {
+  color: #cbd5e1;
+}
+
+.map-container-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.map-controls {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 50;
+}
+
+.control-btn {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #e8eef7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #1e40af;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn:hover {
+  background: #f8fafc;
+  transform: scale(1.05);
+}
+
+.leaflet-container {
+  font-family: "Inter", sans-serif;
+}
+
+.leaflet-popup-content {
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+}

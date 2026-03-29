@@ -1,0 +1,73 @@
+/* frontend/src/styles/std-dashboard-welcome.css */
+
+.std-welcome-card {
+  background: #132677;
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+  max-width: 800px;
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.std-welcome-illustration {
+  width: 400px;
+  height: 400px;
+  background-image: url("../assets/student-dash.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.std-welcome-content {
+  flex: 1;
+  z-index: 1;
+}
+
+.std-welcome-title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.std-welcome-name {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.std-welcome-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.std-dashboard-title {
+  margin-top: 24px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.std-content-wrapper {
+  display: flex;
+}
+
+/* FIX: This moves the main content area away from the fixed sidebar. */
+.std-main-content {
+  margin-left: 250px; /* Should match the width of your StudentSidebar */
+  padding: 20px 30px; 
+  flex: 1;
+  min-height: 100vh;
+  background-color: #f5f7fa; 
+}
+
+.std-portal-wrapper {
+  width: 100%;
+}

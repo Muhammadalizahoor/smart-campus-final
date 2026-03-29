@@ -1,0 +1,565 @@
+.admin-content-wrapper {
+  padding-top: 90px;      /* space under fixed header */
+  padding-left: 310px;    /* space for fixed sidebar */
+  padding-right: 24px;
+  padding-bottom: 40px;
+  min-height: 100vh;
+  background: #f5f7fa;
+  transition: all 0.2s ease;
+}
+/* Map container under DashboardSection */
+.dashboard-map {
+  margin-top: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  height: 500px;              /* adjust as needed */
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Force Google map to fill container */
+.dashboard-map .google-map-container {
+  width: 100%;    /* full width */
+  height: 100%;   /* full height */
+  border-radius: 12px; /* optional, parent ke match ke liye */
+}
+
+.dashboard-charts-wrapper {
+  margin-top: 32px;
+}
+.sidebar {
+  width: 260px !important; /* force-match sidebar width */
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+
+
+/* frontend/src/styles/com-admin-complaints.css */
+
+/* --- General Layout and Content Wrapper (UNCHANGED) --- */
+
+.com-admin-content-wrapper {
+    padding: 24px 20px 40px 20px;
+    margin-left: 290px;
+    margin-top: 60px; 
+    transition: margin-left 0.3s ease;
+    min-height: calc(100vh - 60px); 
+    background-color: #f8fafc; 
+    margin-right: 40px;
+}
+
+/* --- KPI / Stats Cards Styles (Top Row) --- */
+
+.com-kpi-cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+    margin-top: 0; 
+}
+
+.com-kpi-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+    text-align: left;
+}
+
+.com-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.15);
+}
+
+/* ✅ FIX 1: Icon Style - Add Circle Background */
+.com-kpi-card-icon {
+    width: 36px; /* Increased size slightly */
+    height: 36px; /* Increased size slightly */
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    
+    /* Apply Light Blue Background and Primary Blue Icon Color */
+    background-color: #eef2ff !important; /* Very light blue background */
+    color: #4f46e5 !important; /* Blue color for the icon itself */
+}
+
+/* Override previous specific color settings, maintaining the new blue theme */
+.com-kpi-card-icon.total,
+.com-kpi-card-icon.pending,
+.com-kpi-card-icon.resolved,
+.com-kpi-card-icon.bus { 
+    color: #0061FF !important; /* Ensure icons are blue */
+}
+
+.com-kpi-card-icon svg {
+    /* To adjust the size of the icon inside the circle if needed */
+    width: 20px;
+    height: 20px;
+}
+
+.com-kpi-card-title {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.com-kpi-card-value {
+    /* Count size increased (from previous step) */
+    font-weight: 700;
+    font-size: 30px; 
+    color: #1f2937;
+}
+
+.com-kpi-card-subtitle {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 4px;
+}
+
+/* --- Complaints Log Section (UNCHANGED) --- */
+
+.com-complaints-log-container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    padding: 20px 20px 20px;
+}
+
+.com-complaints-log-header {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1f2937;
+}
+
+/* --- Search and Filters Row --- */
+
+.com-filter-controls-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    align-items: center;
+}
+
+.com-search-input-group {
+    position: relative;
+    /* ✅ FIX 2: Search bar width reduced */
+    width: 770px; /* Fixed width for search bar */
+    flex-shrink: 0; /* Prevents stretching */
+}
+
+.com-search-input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; 
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.com-search-input-group input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.com-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.com-filter-select {
+    /* ✅ FIX 3: Filter width increased */
+    width: 350px; /* Increased width for filter dropdowns */
+    flex-shrink: 0; 
+    
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+    background-color: #fff;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z' clip-rule='evenodd' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 28px;
+}
+
+/* --- Table Styles (UNCHANGED) --- */
+
+.com-analytics-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0;
+}
+
+.com-analytics-table th, .com-analytics-table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.com-analytics-table thead th {
+    font-weight: 600;
+    color: #6b7280;
+    background-color: #f9fafb;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+}
+
+.com-analytics-table thead tr th:first-child {
+    border-top-left-radius: 12px;
+}
+.com-analytics-table thead tr th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.com-analytics-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.com-student-info div:first-child {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.com-student-info div:last-child {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.com-status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.com-status-resolved {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.com-status-pending {
+    background-color: #fef9c3;
+    color: #d97706;
+}
+
+.com-status-inprogress {
+    background-color: #e0f2fe;
+    color: #0ea5e9;
+}
+
+.com-status-dismissed {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.com-action-buttons button {
+    margin-left: 4px;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.com-action-buttons button:hover {
+    background-color: #f3f4f6;
+}
+
+
+
+
+
+/* ======================= ADMIN COMPLIANT DETAIL PAGE UI ========================= */
+
+:root {
+    --complaint-primary-blue: #132677; /* The required dark blue color */
+    --complaint-soft-bg: #f5f7fa; 
+    --complaint-border-color: #e0e0e0;
+}
+
+
+.complaint-admin-content-wrapper {
+    /* Adjust these values based on your actual Header/Sidebar dimensions */
+    padding: 30px; 
+    padding-top: 90px; /* Increased top padding to push content below fixed header */
+    margin-left: 290px; /* Assumes a 250px wide sidebar */
+    background-color: var(--complaint-soft-bg);
+    min-height: 100vh;
+}
+
+/* Back Button Styling */
+.complaint-back-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--complaint-primary-blue);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.complaint-back-button:hover {
+    color: #1a4d8c; 
+}
+
+
+/* --- 2. Grid Layout and Card Structure --- */
+
+/* Grid Layout for Main Content */
+.complaint-detail-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.complaint-left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* New: Stack for Right Panel (Complaint Details and Update Status) */
+.complaint-right-panel-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between the two new cards */
+}
+
+/* General Card Styling (for Description, Reply, Details, Status) */
+.complaint-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    /* Soft shadow to match the image look */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
+}
+
+.complaint-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0; 
+}
+
+
+/* --- 3. Description Card Styles --- */
+.complaint-description-card .complaint-card-title {
+    /* Title only border for Description card */
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--complaint-border-color);
+    margin-bottom: 15px;
+}
+
+.complaint-sub-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.complaint-description-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4b5563;
+    white-space: pre-wrap;
+}
+
+
+/* --- 4. Reply Card Styles --- */
+
+/* Align button to the right, full width for textarea */
+.complaint-reply-card .complaint-card-title {
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--complaint-border-color);
+    margin-bottom: 15px;
+}
+
+.complaint-reply-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end; /* Align elements to the right */
+}
+
+.complaint-reply-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--complaint-border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 120px;
+    box-sizing: border-box; /* Important for full width */
+}
+
+/* Send Button Styling */
+.complaint-send-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--complaint-primary-blue); /* #132677 */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    width: 150px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.complaint-send-button:hover:not(:disabled) {
+    background-color: #1a4d8c; 
+}
+
+.complaint-send-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+/* --- 5. Complaint Details Card Styles --- */
+
+/* Header with Title and Status Tag */
+.complaint-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--complaint-border-color);
+    margin-bottom: 15px;
+}
+
+.complaint-details-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.complaint-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    padding: 4px 0;
+}
+
+.complaint-detail-icon {
+    color: #6b7280; /* Neutral icon color for details box */
+}
+
+.complaint-detail-label {
+    font-weight: 500;
+    color: #4b5563;
+    min-width: 90px;
+}
+
+.complaint-detail-value {
+    font-weight: 600;
+    color: #1f2937;
+    flex-grow: 1;
+}
+
+/* Status Tag Styling (Top Right) */
+.complaint-status-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 16px; /* More rounded corners for the tag */
+    text-transform: capitalize;
+    min-width: 70px; 
+    text-align: center;
+}
+
+/* Status Tag Colors */
+.complaint-status-pending {
+    background-color: #fef3c7; /* Light yellow */
+    color: #a87803; 
+}
+
+.complaint-status-in-progress {
+    background-color: #dbeafe; /* Light blue */
+    color: #1d4ed8; 
+}
+
+.complaint-status-resolved {
+    background-color: #d1fae5; /* Light green */
+    color: #065f46; 
+}
+
+.complaint-status-dismissed {
+    background-color: #fee2e2; /* Light red */
+    color: #991b1b; 
+}
+
+.complaint-ticket-id {
+    display: none; /* Hidden as requested to remove the TKT ID from this prominent spot */
+}
+
+
+/* --- 6. Update Status Card Styles --- */
+
+.complaint-status-update-card .complaint-card-title {
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--complaint-border-color);
+    margin-bottom: 15px;
+}
+
+.complaint-status-selector-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.complaint-status-select {
+    width: 100%; /* Make select box span full width */
+    padding: 10px 12px;
+    border: 1px solid var(--complaint-border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    /* Custom arrow appearance to match typical UI styling (can be complex, but setting background color helps) */
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='currentColor'%3E%3Cpath d='M6 8l4 4 4-4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}

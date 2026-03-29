@@ -1,0 +1,41 @@
+.bus-card-pro {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 18px;
+  border: 1px solid #f0f3f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.bus-identity { display: flex; align-items: center; gap: 12px; }
+.bus-icon-circle { background: #132677; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.title-stack h3 { margin: 0; font-size: 17px; color: #1a202c; font-weight: 700; }
+.title-stack p { margin: 0; font-size: 12px; color: #718096; }
+
+.trip-badge { font-size: 10px; font-weight: 800; padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+.trip-badge.outbound { background: #f0fdf4; color: #16a34a; }
+.trip-badge.inbound { background: #eff6ff; color: #2563eb; }
+
+/* Fixed Grid Layout */
+.info-main-grid { display: flex; justify-content: space-between; margin-bottom: 22px; }
+.mini-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 14px; }
+.mini-row .label { color: #94a3b8; }
+.mini-row .value { color: #2d3748; font-weight: 600; }
+.mini-row .value.blue-text { color: #132677; }
+
+.eta-capsule { background: #132677; color: white; padding: 5px 12px; border-radius: 7px; display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; }
+
+/* Professional Progress Bar */
+.horizontal-track { display: flex; overflow-x: auto; padding: 15px 0; scrollbar-width: none; }
+.track-node { display: flex; flex-direction: column; align-items: center; min-width: 90px; }
+.node-bar { display: flex; align-items: center; width: 100%; height: 16px; }
+
+.dot-core { width: 11px; height: 11px; border-radius: 50%; background: #e2e8f0; z-index: 2; transition: 0.3s; }
+.dot-core.active { background: #132677; box-shadow: 0 0 0 3px rgba(19, 38, 119, 0.1); }
+
+.line-segment { flex: 1; height: 3px; background: #e2e8f0; margin: 0 -1px; }
+.line-segment.active { background: #132677; }
+
+.stop-label-text { font-size: 10px; color: #94a3b8; margin-top: 8px; text-align: center; white-space: nowrap; }
+.stop-label-text.active { color: #1e293b; font-weight: 700; }

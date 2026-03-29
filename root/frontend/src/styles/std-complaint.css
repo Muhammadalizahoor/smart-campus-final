@@ -1,0 +1,259 @@
+/* =========================================================================
+   FINAL Custom CSS for StudentComplaints Component (V4)
+   - Status Badge moved to the right, made oval/pill-shaped, and larger.
+   - Hides the "Status:" label in the history view.
+========================================================================= */
+
+/* Body/Background Styling for a cleaner look */
+body {
+    background-color: #f4f7f9; /* Light grey/off-white background */
+}
+
+/* Student Content Wrapper - Main Page Area */
+.student-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Section Heading (Submit a Complaint) */
+.student-content-wrapper h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 24px !important;
+}
+
+/* --- Form and Info Containers (Top Row) --- */
+
+/* Flex Container for Top Row */
+.student-content-wrapper > div:first-of-type {
+    display: flex;
+    gap: 32px !important;
+    margin-bottom: 32px !important;
+    flex-wrap: wrap;
+}
+
+/* Base Card Styles for both Form and Info */
+.student-content-wrapper > div:first-of-type > div {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+    transition: box-shadow 0.3s;
+    border: 1px solid #e2e8f0;
+}
+
+/* Complaint Form Styles - LEFT Container */
+.student-content-wrapper > div:first-of-type > div:first-child {
+    flex: 2;
+    padding: 30px !important;
+    min-width: 350px !important;
+}
+
+/* Auto-filled Student Info Styles - RIGHT Container */
+.student-content-wrapper > div:first-of-type > div:last-child {
+    flex: 1;
+    padding: 30px !important;
+    min-width: 250px !important;
+    height: fit-content !important;
+}
+
+/* Input/Select/Textarea Styling */
+form label {
+    font-size: 14px;
+    font-weight: 600 !important;
+    color: #334155;
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 10px;
+}
+
+form select,
+form textarea {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+    color: #475569;
+    background-color: #f8fafc;
+    transition: border-color 0.2s;
+}
+
+form select:focus,
+form textarea:focus {
+    border-color: #3b82f6 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+form textarea {
+    min-height: 150px !important;
+    resize: vertical;
+}
+
+/* Submit Button Styling */
+form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 14px 20px !important;
+    font-size: 16px;
+    font-weight: 600;
+    background: #2563eb !important;
+    color: white !important;
+    border-radius: 10px !important;
+    border: none !important;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    margin-top: 20px !important;
+}
+
+form button[type="submit"]:hover:not(:disabled) {
+    background-color: #1d4ed8 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+form button[type="submit"]:disabled {
+    background-color: #93c5fd !important;
+    cursor: not-allowed;
+}
+
+/* Auto-filled Student Info - Content Styling */
+.student-content-wrapper > div:first-of-type > div:last-child h3 {
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 20px !important;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.student-content-wrapper > div:first-of-type > div:last-child > div > div {
+    display: flex;
+    align-items: center;
+    font-size: 15px !important;
+    color: #334155;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e5e7eb;
+}
+.student-content-wrapper > div:first-of-type > div:last-child > div > div:last-child {
+    border-bottom: none;
+}
+
+.student-content-wrapper > div:first-of-type > div:last-child strong {
+    color: #1e293b;
+    font-weight: 700 !important;
+    min-width: 60px;
+    margin-right: 8px;
+}
+
+/* --- Complaint History Section --- */
+
+/* History Section Container (Wrapper around all history) */
+.student-content-wrapper > div:last-child {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+    padding: 30px !important;
+    margin-top: 32px !important;
+    position: relative; /* To position the status badge relative to the entire history section */
+}
+
+/* History Section Heading */
+.student-content-wrapper > div:last-child h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+/* Individual Complaint Item (The Mapped Div - NOW A CARD) */
+.student-content-wrapper > div:last-child > div:not(:first-child) {
+    /* Targets the inner div containing the whole complaint item */
+    margin-bottom: 16px;
+    padding: 15px !important;
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.2s;
+    
+    position: relative; /* IMPORTANT: Status badge will be absolutely positioned relative to this card */
+}
+
+.student-content-wrapper > div:last-child > div:not(:first-child):hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Content inside the individual complaint item */
+.student-content-wrapper > div:last-child > div:not(:first-child) > div {
+    border-bottom: none !important;
+    padding: 4px 0 !important;
+    display: block !important;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* General Complaint Detail Labels */
+.student-content-wrapper > div:last-child > div:not(:first-child) strong {
+    color: #1e293b;
+    font-weight: 600 !important;
+    min-width: 80px;
+    margin-right: 5px;
+}
+
+/* Status Badge/Pill - MOVED TO RIGHT AND RESIZED/RESHAPED */
+.student-content-wrapper > div:last-child > div:not(:first-child) > div:nth-child(4) {
+    /* Targets the Status div */
+    position: absolute; /* Position relative to its parent card */
+    top: 15px; /* Adjust vertical position */
+    right: 15px; /* Move to the right edge */
+    
+    /* Shape and Size Updates */
+    font-weight: 700 !important;
+    padding: 8px 18px !important; /* Larger padding for size */
+    border-radius: 50px !important; /* Oval/Pill shape */
+    display: inline-block !important;
+    width: auto !important;
+    text-align: center;
+    font-size: 14px !important; /* Larger font size */
+    
+    /* Remove redundant margins */
+    margin: 0 !important; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Small shadow for lift */
+}
+
+/* Hide the "Status:" word from the badge text */
+.student-content-wrapper > div:last-child > div:not(:first-child) > div:nth-child(4)::before {
+    content: ""; /* Hides the initial "Status: " text */
+}
+
+/* Admin Reply Container Styling (No change from V3) */
+.student-content-wrapper > div:last-child > div:not(:first-child) > div[style*="border-left: 4px solid #2563eb"] {
+    margin-top: 15px !important;
+    padding: 15px !important;
+    background: #f0f9ff !important;
+    border-left: 5px solid #06b6d4 !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+
+.student-content-wrapper > div:last-child > div:not(:first-child) > div[style*="border-left: 4px solid #2563eb"] strong {
+    color: #0c4a6e;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.student-content-wrapper > div:last-child > div:not(:first-child) > div[style*="border-left: 4px solid #2563eb"] > div {
+    margin-top: 0 !important;
+    color: #334155;
+    line-height: 1.5;
+}
+
+.student-content-wrapper > div:last-child > div:not(:first-child) > div[style*="border-left: 4px solid #2563eb"] > div:last-child {
+    font-size: 11px !important;
+    color: #64748b !important;
+    margin-top: 6px !important;
+    text-align: right;
+}

@@ -1,0 +1,26 @@
+.two-col-wrapper {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  width: 90%;
+  padding-right: 24px;
+}
+
+.left-col {
+  flex: 1.2; /* bigger */
+}
+
+.right-col {
+  flex: 1;   /* slightly smaller */
+}
+
+/* Prevent stretching too wide */
+.left-col .welcome-card {
+  max-width: 100%;
+  margin-left: 0;
+}
+
+/* Alerts container auto-adjusts */
+.right-col .active-alerts-container {
+  width: 100%;
+}

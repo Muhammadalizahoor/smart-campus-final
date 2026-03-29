@@ -1,0 +1,870 @@
+/* ================================================================= */
+/* ============== FIX: ADMIN CONTENT WRAPPER SPACING ============== */
+/* (This adds padding between the main content and the sidebar/window edges) */
+/* ================================================================= */
+
+.admin-content-wrapper {
+ 
+  
+  padding-bottom: 32px; 
+  padding-left: 310px;   
+  
+  
+  /* Ensuring main content takes available space beside sidebar */
+  /* This part should ideally be defined in a main layout CSS, 
+     but added here for completeness if it's missing. */
+  /* If sidebar uses margin-left/padding-left on body, you might not need this: */
+  /* margin-left: 256px; */ 
+  
+  /* Set a minimum height for good visual structure */
+  min-height: 100vh;
+  
+  /* You can add a default background color for the overall page background */
+  background-color: #f9fafb; /* Light gray background color */
+}
+
+/* ================================================================= */
+/* ================================================================= */
+
+
+/* Analytics Pages Styling */
+
+/* Container for all tabs (the white pill background) */
+.analysis-tabs {
+  display: flex; /* Arrange buttons horizontally */
+  background-color: #fff; /* White background */
+  padding: 4px; /* Internal spacing */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); /* Subtle shadow for 3D effect */
+  max-width: fit-content; /* Only take up space needed by content */
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* Base style for each tab button */
+.analysis-tab {
+  background: none; /* No background by default */
+  border: none; /* No border */
+  padding: 8px 16px; /* Vertical and horizontal padding */
+  font-size: 14px; /* Font size */
+  font-weight: 500; /* Medium weight for inactive tabs */
+  color: #374151; /* Darker gray text for inactive tabs */
+  cursor: pointer; /* Pointer on hover */
+  border-radius: 6px; /* Slightly rounded corners for the button itself */
+  transition: all 0.2s ease-in-out; /* Smooth transitions */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Hover style for inactive tabs */
+.analysis-tab:hover {
+  /* You can add a subtle hover effect if desired, like a lighter background or darker text */
+  color: #111827;
+}
+
+/* Active tab style (the dark blue background) */
+.analysis-tab-active {
+background-color: #1e40af;
+  color: #ffffff; /* White text for active tab */
+  font-weight: 600; /* Bolder text for active tab */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); /* Shadow to make it stand out */
+}
+
+/* Active tab hover: No change on hover for the active tab */
+.analysis-tab-active:hover {
+  color: #ffffff;
+}
+
+/* If .analysis-topbar is just a generic div: */
+.analysis-tabs {
+  margin-left: auto;
+  margin-right: auto;
+}
+ /* ===== end tabs style ======*/
+
+
+
+ 
+.analysis-dropdown {
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.stat-card.highlighted {
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  background: #eff6ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b82f6;
+}
+
+.stat-change {
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.stat-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Chart Section */
+.chart-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.chart-tooltip {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 12px;
+}
+
+.tooltip-time {
+  color: #3b82f6;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tooltip-bus {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.tooltip-passengers {
+  color: #6b7280;
+  margin: 4px 0;
+}
+
+.tooltip-overcrowded {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* Table Section */
+.table-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filters-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.filter-input,
+.filter-select,
+.filter-date {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.filter-input::placeholder {
+  color: #9ca3af;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table thead {
+  background: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.data-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.data-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+}
+
+.data-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.status-moderate {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+.status-normal {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.loading-state {
+  padding: 40px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+/* KPI cards grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  transition: all 0.15s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.kpi-card-highlight {
+  border: 2px solid #2563eb;
+}
+
+.kpi-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.kpi-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.kpi-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6b7280;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.kpi-subtext {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.kpi-trend {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kpi-trend-up {
+  color: #16a34a;
+}
+
+.kpi-trend-down {
+  color: #ef4444;
+}
+
+
+
+/* chart stuff */
+.chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.monthly-chart-wrapper {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+/* already used tooltip */
+.chart-tooltip {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  font-size: 12px;
+}
+
+.tooltip-time {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tooltip-bus,
+.tooltip-passengers,
+.tooltip-overcrowded {
+  font-size: 12px;
+  margin: 1px 0;
+}
+
+.chart-loading {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+.analysis-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.analysis-select {
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font-size: 16px;
+  color: #374151;
+  flex-shrink: 0; /* Prevents it from shrinking too much */
+  margin-left: 20px;
+  width:28%;
+}
+
+.analysis-tab {
+  padding: 8px 16px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.analysis-tab-active {
+  background: #2563eb;
+  color: white;
+}
+
+
+/* ---- Generic card ---- */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+  margin-bottom: 24px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ---- Add Student Form ---- */
+.add-student-card .student-form {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  align-items: center;
+}
+
+.student-input {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: #111827;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-small,
+.btn-small-outline,
+.btn-small-danger {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  margin-left: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-small {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-small-outline {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+}
+
+.btn-small-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ---- Table ---- */
+.analytics-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.analytics-table thead {
+  background: #f9fafb;
+}
+
+.analytics-table th,
+.analytics-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+/* ---- Pagination ---- */
+.pagination {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination button {
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+/* ---- Search ---- */
+.analysis-search {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 16px;
+  font-size: 16px;
+ width: 100%;
+ margin-bottom: 20px;
+}
+
+.analysis-search-inline {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 16px;
+  font-size: 16px;
+flex-grow: 1; /* Allows the search bar to take up available space */
+    min-width: 150px; /* Prevents it from getting too small */
+    margin-bottom: 30px; 
+    width: 70%;
+}
+
+/* ---- Modal ---- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px 24px;
+  width: 420px;
+  max-width: 95vw;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.modal-label {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.modal-input,
+.modal-select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 7px 9px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.analysis-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.report-btn {
+  background: #1e40af;
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.report-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.report-box {
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+
+/* ================================================================= */
+/* ============== NEW CSS FOR OVERCROWDING TABLE UI (EXISTING) ============== */
+/* ================================================================= */
+
+/* 1. TABLE CARD STYLING (.analytics-table-card) */
+/* This provides the white background, rounded corners, and shadow, matching the image. */
+.analytics-table-card {
+  /* White background and rounded container */
+  background-color: #ffffff;
+  border-radius: 12px;
+  
+  /* Shadow matching the example image */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  
+  /* Internal padding around the table/filters/search */
+  padding: 24px;
+  margin-top: 20px;
+}
+
+/* 2. SEARCH BAR STYLING (inside analytics-table-content component) */
+.analytics-table-content .table-search {
+    padding: 10px 16px;
+    border: 1px solid #d1d5db; /* Light gray border */
+    border-radius: 8px;
+    font-size: 14px;
+    color: #4b5563; /* Darker gray text */
+    flex-grow: 1; /* Allow search bar to take up space */
+    width: 300px; /* Base width */
+    max-width: 100%;
+}
+
+.analytics-table-content .table-search::placeholder {
+    color: #9ca3af; /* Placeholder text color */
+}
+
+/* 3. MAIN TABLE STRUCTURE (.overcrowding-data-table) */
+.overcrowding-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Table Header (<thead>) */
+.overcrowding-data-table thead {
+  text-align: left;
+  /* Light gray background for the header row */
+  background-color: #f9fafb;
+}
+
+/* Table Header Cells (<th>) */
+.overcrowding-data-table th {
+  padding: 12px 16px;
+  color: #6b7280; /* Gray text color for headers */
+  font-weight: 600; /* Semi-bold */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table Body Rows (<tr>) */
+.overcrowding-data-table tbody tr {
+  /* Hover effect */
+  transition: background-color 0.15s ease;
+}
+
+.overcrowding-data-table tbody tr:hover {
+    background-color: #f3f4f6;
+}
+
+/* Table Data Cells (<td>) */
+.overcrowding-data-table td {
+  padding: 12px 16px;
+  color: #1f2937; /* Darker text for content */
+  vertical-align: middle;
+  border-bottom: 1px solid #e5e7eb; /* Separator between rows */
+}
+
+/* Remove border from the very last row */
+.overcrowding-data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* 4. STATUS TAG STYLING (Normal, Moderate, High) */
+
+/* Base style for all status tags (the pill shape) */
+.status-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 9999px; /* Pill shape */
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase; /* Match image style */
+}
+
+/* Normal Status (Green - like 'Active' in the image) */
+.status-normal {
+  background-color: #d1fae5; /* Light green background */
+  color: #065f46; /* Dark green text */
+}
+
+/* Moderate Status (Orange/Yellow - for warning) */
+.status-moderate {
+  background-color: #fef3c7; /* Light yellow/orange background */
+  color: #92400e; /* Dark orange text */
+}
+
+/* High Status (Red - for critical/danger) */
+.status-high {
+  background-color: #fee2e2; /* Light red background */
+  color: #991b1b; /* Dark red text */
+}
+
+/* Default/Missing Status (Gray) */
+.status-default {
+    background-color: #e5e7eb;
+    color: #4b5563;
+}
+
+
+/* ===============================
+   ADD STUDENT FORM – GRID FIX
+   =============================== */
+
+.card-title{
+  font-size:22px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}   
+.student-form-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 20px 24px;
+  width: 100%;
+}
+
+/* Each field */
+.student-form-grid .form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Labels */
+.student-form-grid .form-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* Inputs */
+.student-form-grid .student-input {
+  width: 100%;
+  height: 42px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+/* Full width submit button */
+.student-form-grid .form-submit-btn {
+  grid-column: 1 / -1;
+  height: 46px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding-top: 4px;
+  background-color: #1e40af;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .student-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+

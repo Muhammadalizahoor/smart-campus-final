@@ -1,0 +1,66 @@
+/* frontend/src/styles/AdminLayout.module.css */
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7f9; /* Light grey background */
+}
+
+.mainContent {
+    margin-left: 250px; /* Space for the fixed sidebar */
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.header {
+    /* Header is not required, but keeping a placeholder for good layout practice */
+    /* ... future header styles ... */
+    height: 0; /* Remove height as requested */
+}
+
+.tabsContainer {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tabButton {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6c757d;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.tabButton.active {
+    color: #007bff;
+    border-bottom: 3px solid #007bff; /* Matches tab indicator color */
+    font-weight: 600;
+}
+
+.contentBox {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.pageTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.routeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}

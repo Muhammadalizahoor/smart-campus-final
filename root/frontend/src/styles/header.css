@@ -1,0 +1,143 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid #e8eef7;
+  height: 70px;
+}
+
+
+.header-left {
+  display: flex;
+  align-items: center;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.datetime {
+  text-align: right;
+  min-width: 150px;
+  margin-right: 30px;
+}
+
+.date {
+  font-size: 16px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  margin-top: 10px;
+}
+
+.time {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e40af;
+  margin-bottom: 16px;
+  
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-left: 24px;
+  border-left: 1px solid #e8eef7;
+}
+
+.header-icons svg {
+  color: #64748b;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
+/* Name next to avatar */
+.user-name-header {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.user-email {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* Wrap avatar + name + dropdown arrow */
+.user-avatar-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+
+/* Dropdown modal */
+.dropdown-menu {
+  position: absolute;
+  top: 60px; /* below header */
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Dropdown buttons */
+.dropdown-btn {
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.dropdown-btn:hover {
+  background: #f0f0f0;
+}
+
+.dropdown-btn.logout {
+  color: red;
+  font-weight: 600;
+}

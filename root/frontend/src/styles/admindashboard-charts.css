@@ -1,0 +1,125 @@
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.chart-card .chart-title2 {
+  font-size: 24px;   /* clearly bigger */
+  font-weight: 700;
+  color: #1f2937;
+   margin-bottom: 8px;
+  margin-top:16px;
+  margin-left:8px;
+}
+
+.chart-card .chart-subtitle2 {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 16px;
+  margin-left:8px;
+}
+
+
+.chart-svg {
+  width: 100%;
+  height: 300px;
+    overflow: visible; /* important: tooltip ko SVG se bahar clip na kare */
+
+}
+
+
+
+.chart-title1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 8px;
+  margin-top:16px;
+  margin-left:8px;
+}
+
+.chart-subtitle1 {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 16px;
+  margin-left:8px;
+}
+
+
+
+/* Chart heading + subtitle handled by existing .chart-title and .chart-subtitle */
+
+.donut-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative; /* tooltip ke liye relative parent */
+}
+
+.donut-svg {
+  max-width: 250px;
+}
+
+/* Tooltip */
+
+.tooltip {
+  position: absolute; /* fixed -> absolute */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #111827;
+  color: #fff;
+  font-size: 11px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1000;
+  border: 1px solid transparent;
+}
+
+.tooltip-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Donut legend */
+.donut-legend {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}

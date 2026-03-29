@@ -1,0 +1,8 @@
+.student-content-wrapper {
+  padding-top: 40px;   /* smaller, because student header is smaller */
+  padding-left: 0px;   /* student sidebar is NOT fixed like admin */
+  padding-right: 24px;
+  padding-bottom: 40px;
+  min-height: 100vh;
+  background: #f5f7fa;
+}

@@ -1,0 +1,145 @@
+.active-alerts-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= HEADER ================= */
+
+.alerts-header {
+  margin-bottom: 24px;
+}
+
+.alerts-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 8px 0;
+}
+
+.alerts-subtitle {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+/* ================= LIST ================= */
+
+.alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Scroll after ~3 alerts */
+.alerts-list.scrollable {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* ================= ITEM ================= */
+
+.alert-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid;
+  transition: all 0.2s ease;
+}
+
+.alert-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= ALERT TYPES ================= */
+
+/* 🔴 DANGER — Overcrowding */
+.alert-danger {
+  background-color: #ffe8e8;
+  border-left-color: #ff4444;
+  color: #cc2222;
+}
+
+.alert-danger .alert-icon {
+  color: #ff4444;
+}
+
+/* 🟡 WARNING — Near capacity / RFID anomaly */
+.alert-warning {
+  background-color: #fffbe8;
+  border-left-color: #ffc107;
+  color: #b8860b;
+}
+
+.alert-warning .alert-icon {
+  color: #ffc107;
+}
+
+/* 🔵 INFO — Daily peak / informational */
+.alert-info {
+  background-color: #e8f4ff;
+  border-left-color: #2196f3;
+  color: #0d47a1;
+}
+
+.alert-info .alert-icon {
+  color: #2196f3;
+}
+
+/* ================= CONTENT ================= */
+
+.alert-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.alert-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alert-title-text {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.alert-timestamp {
+  font-size: 12px;
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* ================= EMPTY STATE ================= */
+
+.no-alerts {
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .active-alerts-container {
+    padding: 16px;
+  }
+
+  .alerts-title {
+    font-size: 20px;
+  }
+
+  .alert-item {
+    gap: 12px;
+    padding: 12px;
+  }
+}

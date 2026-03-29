@@ -1,0 +1,90 @@
+/* App container */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* Sidebar fixed, main content flexible */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px; /* header height */
+  padding-left: 24px;
+  padding-right: 24px;
+  overflow-x: hidden;
+}
+
+/* Wrapper for form to avoid sidebar overlap */
+.profile-settings-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  padding: 24px 0; /* top & bottom spacing */
+}
+
+/* Profile container - form card */
+.profile-container {
+  width: 100%;
+  max-width: 700px; /* increase width so form is wider */
+  background: white;
+  border-radius: 12px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  height:650px;
+}
+
+/* Heading */
+.profile-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* Form fields */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.profile-form input {
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.profile-form input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* Save button */
+.profile-form button {
+  margin-top: 16px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-form button:hover {
+  background: #5a67d8;
+}

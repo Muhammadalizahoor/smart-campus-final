@@ -1,0 +1,187 @@
+.bus-card {
+  background: white;
+  border: 1px solid #e8eef7;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= HEADER ================= */
+
+.bus-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.bus-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bus-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.bus-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.bus-route {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.status-badge {
+  background: #10b981;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ================= BODY ================= */
+
+.bus-card-body {
+  margin-bottom: 12px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.label {
+  font-size: 11px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.estimated-time {
+  display: inline-block;
+  background: linear-gradient(90deg, #1e40af, #1e3a8a);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ================= FOOTER ================= */
+
+.bus-card-footer {
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.stops-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+/* ================= TIMELINE ================= */
+
+.stops-container {
+  position: relative;
+  padding: 18px 0 28px;
+}
+
+.stops-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+/* Neutral base line */
+.stops-timeline::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e2e8f0;
+  transform: translateY(-50%);
+}
+
+.stop-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.stop-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #e2e8f0;
+}
+
+/* Active (current bus position) */
+.stop-dot.active {
+  background: #1e40af;
+  box-shadow: 0 0 0 2px #dbeafe;
+}
+
+/* Passed stops */
+.stop-dot.passed {
+  background: #94a3b8;
+  box-shadow: 0 0 0 2px #e2e8f0;
+}
+
+/* Destination */
+.stop-dot.end {
+  background: #10b981;
+  box-shadow: 0 0 0 2px #d1fae5;
+}
+
+/* ================= STOP LABELS ================= */
+
+.stops-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.stop-label {
+  flex: 1;
+  text-align: center;
+}
+
+.stop-label small {
+  font-size: 11px;
+  color: #64748b;
+  white-space: nowrap;
+}

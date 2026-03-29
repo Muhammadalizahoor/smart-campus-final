@@ -1,0 +1,61 @@
+.welcome-card {
+  background: #132677;  /* solid color */
+  border-radius: 16px;
+  padding: 28px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: white;  /* text color white */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+
+  max-width: 800px;
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+
+
+.welcome-illustration {
+  
+
+  width: 300px;   /* adjust size as needed */
+  height: 250px;
+background-image: url("../assets/dash-ill.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.welcome-content {
+  flex: 1;
+  z-index: 1;
+}
+
+.welcome-title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.welcome-name {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.welcome-text {
+  font-size: 16px;
+ 
+  line-height: 1.5;
+}
+
+
+
+

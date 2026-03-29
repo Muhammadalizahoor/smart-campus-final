@@ -1,0 +1,124 @@
+/* frontend/src/styles/RoutesTable.module.css */
+.actionsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #fff;
+    width: 300px; /* Adjusted width */
+}
+
+.searchBox input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+.addRouteButton {
+    background-color: #007bff; /* Blue button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.addRouteButton:hover {
+    background-color: #0056b3;
+}
+
+.tableContainer {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.table thead tr {
+    background-color: #f8f9fa; /* Light header background */
+    color: #6c757d;
+    font-weight: 600;
+    border-bottom: 2px solid #eee;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.statusActive {
+    background-color: #e6ffe6;
+    color: #008000;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.statusInactive {
+    background-color: #ffe6e6;
+    color: #ff0000;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.actionButton {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.actionButton:hover {
+    color: #007bff;
+}
+
+.stopsDetails {
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+    max-width: 300px;
+    overflow-y: auto;
+    max-height: 150px;
+}
+
+.stopItem {
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #555;
+}
+
+.stopItem strong {
+    color: #333;
+}
