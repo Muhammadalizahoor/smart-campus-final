@@ -11,16 +11,17 @@ const driverRoutes = require("./src/routes/drivers.js");
 const stopsRouter = require("./src/routes/stops");
 const notificationRoutes = require("./src/routes/notificationRoutes");
 const complaintRoutes = require("./src/routes/complaintRoutes");
-const studentRoutes = require("./src/routes/studentRoutes"); // ✅ Purani file hi use hogi
+const studentRoutes = require("./src/routes/studentRoutes");
 
 const { startScanner } = require("./src/scanProcessor/index");
 const { startMonthlyReportJob } = require("./src/jobs/monthlyReportJob");
 
 const app = express();
 
-/* ================== MIDDLEWARE ================== */
+/* ================== MIDDLEWARE (31 March Fix) ================== */
+// Sab ko ijazat de di hai taake demo mein masla na ho
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "*", 
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
@@ -28,13 +29,8 @@ app.use(cors({
 app.use(express.json());
 
 /* ================== ROUTES ================== */
-// ✅ 1. Auth (Signup/Login)
 app.use("/api/auth", authRoutes);
-
-// ✅ 2. Students (List show karna aur RFID assign karna)
-// Humne studentRoutes mein hi assign-rfid ka naya rasta bana diya hai
 app.use("/api/students", studentRoutes);
-
 app.use("/api/overcrowding", overcrowdingRoutes);
 app.use("/api/routes", routeRoutes);
 app.use("/api/drivers", driverRoutes);
@@ -44,7 +40,7 @@ app.use("/api/complaints", complaintRoutes);
 
 /* ================== ROOT ================== */
 app.get("/", (req, res) => {
-  res.status(200).send("Backend running ✔");
+  res.status(200).send("Smart Campus Backend is LIVE ✔");
 });
 
 /* ================== EXTRA SERVICES ================== */
