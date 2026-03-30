@@ -23,3 +23,52 @@ body {
   width: 100%;
   height: 100%;
 }
+
+/* 📱 MOBILE & TABLET RESPONSIVE LOGIC */
+@media (max-width: 768px) {
+  
+  /* 1. Sidebar ko hide karo taake content nazar aaye */
+  .sidebar {
+    position: fixed !important;
+    left: -100% !important; /* Screen se bahar nikaal do */
+    transition: 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* 2. Main content ko poori width do (Sidebar ka margin hata do) */
+  .main-content, 
+  .page-container, 
+  div[style*="margin-left: 260px"], 
+  div[style*="margin-left: 250px"] {
+    margin-left: 0 !important;
+    padding: 15px !important;
+    width: 100% !important;
+  }
+
+  /* 3. Login/Auth Card ko mobile par fit karo */
+  .login-card, .auth-card {
+    width: 90% !important;
+    max-width: 400px !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+  }
+
+  /* 4. Stats Cards (Dashboard) ko ek line mein ek karo */
+  .stats-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+
+  /* 5. Tables ko scrollable bana do taake screen se bahar na jayen */
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* 6. Header/Navbar adjustments */
+  header {
+    padding: 0 15px !important;
+  }
+}
