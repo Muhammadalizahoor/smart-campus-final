@@ -3,19 +3,17 @@
 import React, { useEffect, useState, useMemo } from "react";
 import {
   AlertTriangle,
-  AlertCircle,
   Users,
   MessageSquareWarning,
   Gauge,
   Clock,
   Calendar,
-  ChevronRight // Naya icon link feel dene ke liye
+  ChevronRight 
 } from "lucide-react";
 
 import {
   collection,
   query,
-  where,
   limit,
   onSnapshot,
   addDoc,
@@ -38,7 +36,7 @@ export default function ActiveAlerts() {
   
   const SPEED_THRESHOLD = 80;
 
-  // Stable formatting function
+  // Stable formatting function (History Page Style)
   const formatDateTime = (date) => {
     const d = date instanceof Date ? date : new Date();
     return {
@@ -50,21 +48,21 @@ export default function ActiveAlerts() {
   useEffect(() => {
     const unsubscribers = [];
 
-    // 1️⃣ RFID ERRORS
+    // 1️⃣ RFID ERRORS (More flexible date handling)
     const rfidQuery = query(
       collection(firestore, "entry_exit_logs"),
-      where("error", "in", ["ALREADY_INSIDE_OTHER_BUS", "EXIT_WITHOUT_ENTRY", "BUS_MISMATCH"]),
-      limit(5)
+      orderBy("timestamp", "desc"),
+      limit(10)
     );
     unsubscribers.push(onSnapshot(rfidQuery, (snap) => {
-      const list = snap.docs.map(d => {
+      const list = snap.docs.filter(d => d.data().error).map(d => {
         const x = d.data();
         const dt = x.timestamp ? new Date(x.timestamp) : new Date();
         return {
           id: d.id,
           group: "rfid",
           type: "danger",
-          title: `RFID ${x.rfid}: ${x.error.replace(/_/g, ' ').toLowerCase()}`,
+          title: `Security: ${x.error.replace(/_/g, ' ')} (RFID: ${x.rfid})`,
           timeObj: dt,
           ...formatDateTime(dt),
           icon: <AlertTriangle size={20} />
@@ -73,14 +71,19 @@ export default function ActiveAlerts() {
       setAllAlerts(prev => ({ ...prev, rfid: list }));
     }));
 
-    // 2️⃣ PENDING COMPLAINTS
-    const compQuery = query(collection(firestore, "complaints"), where("status", "==", "Pending"), limit(5));
+    // 2️⃣ COMPLAINTS (FIXED: Removed "Pending" filter & added flexible date logic)
+    const compQuery = query(
+      collection(firestore, "complaints"), 
+      orderBy("submittedOn", "desc"), 
+      limit(10)
+    );
     unsubscribers.push(onSnapshot(compQuery, (snap) => {
       const list = snap.docs.map(d => {
         const x = d.data();
+        // Match History Page's Date logic
         let dt;
-        if (x.submittedOn?.seconds) {
-            dt = new Date(x.submittedOn.seconds * 1000);
+        if (x.submittedOn?.toDate) {
+            dt = x.submittedOn.toDate();
         } else if (x.submittedOn) {
             dt = new Date(x.submittedOn);
         } else if (x.createdAt?.toDate) {
@@ -93,7 +96,7 @@ export default function ActiveAlerts() {
           id: d.id,
           group: "complaint",
           type: "warning",
-          title: `Complaint (${x.category})`,
+          title: `Complaint: ${x.category || 'General'}`,
           timeObj: dt,
           ...formatDateTime(dt),
           icon: <MessageSquareWarning size={20} />
@@ -110,9 +113,9 @@ export default function ActiveAlerts() {
         .filter(x => x.currentPassengers > x.capacity)
         .map(x => ({
             id: `cap-${x.busId}`,
-            group: "capacity",
+            group: "overcrowd",
             type: "danger",
-            title: `Bus ${x.busId} Overcrowded (${x.currentPassengers}/${x.capacity})`,
+            title: `Overcrowded: Bus ${x.busId} (${x.currentPassengers}/${x.capacity})`,
             timeObj: new Date(), 
             dateText: "Today",
             timeText: "Live",
@@ -122,7 +125,11 @@ export default function ActiveAlerts() {
     }));
 
     // 4️⃣ SPEED HISTORY
-    const historyQuery = query(collection(firestore, "alerts_history"), orderBy("createdAt", "desc"), limit(10));
+    const historyQuery = query(
+      collection(firestore, "alerts_history"), 
+      orderBy("createdAt", "desc"), 
+      limit(10)
+    );
     unsubscribers.push(onSnapshot(historyQuery, (snap) => {
       const list = snap.docs.map(d => {
         const x = d.data();
@@ -140,7 +147,7 @@ export default function ActiveAlerts() {
       setAllAlerts(prev => ({ ...prev, history: list }));
     }));
 
-    // 5️⃣ LIVE SPEED MONITORING
+    // 5️⃣ LIVE SPEED MONITORING (Realtime Database)
     const speedRef = ref(rtdb, 'bus_data_v2');
     unsubscribers.push(onValue(speedRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -162,6 +169,7 @@ export default function ActiveAlerts() {
     return () => unsubscribers.forEach(u => typeof u === 'function' && u());
   }, []);
 
+  // Merge all alerts and sort by time (latest first)
   const displayAlerts = useMemo(() => {
     return [
       ...allAlerts.rfid, 
@@ -173,18 +181,14 @@ export default function ActiveAlerts() {
 
   return (
     <div className="active-alerts-container">
-      {/* 🚀 Clickable Header linked to your new History Page */}
       <div 
         className="alerts-header" 
         onClick={() => window.location.href = '/admin/alerts-history'}
         style={{ 
           cursor: 'pointer', 
-          transition: 'all 0.3s ease',
           display: 'flex',
           flexDirection: 'column'
         }}
-        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f8fafc'}
-        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h2 className="alerts-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -204,7 +208,7 @@ export default function ActiveAlerts() {
         <p className="alerts-subtitle">Click to view complete violation records</p>
       </div>
 
-      <div className="alerts-list" style={{ maxHeight: "250px", overflowY: "auto" }}>
+      <div className="alerts-list" style={{ maxHeight: "300px", overflowY: "auto" }}>
         {displayAlerts.length === 0 ? (
           <p className="no-alerts">✅ System Normal</p>
         ) : (
@@ -212,7 +216,7 @@ export default function ActiveAlerts() {
             <div key={a.id} className={`alert-item alert-${a.type}`}>
               <div className="alert-icon">{a.icon}</div>
               <div className="alert-content">
-                <h3 className="alert-title-text">{a.title}</h3>
+                <h3 className="alert-title-text" style={{ fontSize: '13px', fontWeight: '600' }}>{a.title}</h3>
                 <div style={{ display: 'flex', gap: '12px', marginTop: '4px' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#64748b' }}>
                     <Calendar size={12} /> {a.dateText}
