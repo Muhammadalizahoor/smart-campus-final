@@ -7,14 +7,16 @@ import { useAuth } from "../contexts/AuthContext";
 import "../styles/std-dashboard-welcome.css"; 
 
 export default function StudentPortal() {
-  const { user, loading: authLoading } = useAuth(); // AuthContext se loading bhi nikaal lein
+  const { user, loading: authLoading } = useAuth(); 
   const [studentName, setStudentName] = useState("");
   const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     const fetchStudent = async () => {
-      // Agar auth abhi load ho raha hai ya user nahi hai toh wait karein
+      // 🚨 Sab se zaroori: Jab tak Auth load ho raha hai, rukh jao
       if (authLoading) return;
+      
+      // Agar loading khatam ho gayi aur user nahi mila
       if (!user?.email) {
         setDataLoading(false);
         return;
@@ -34,18 +36,19 @@ export default function StudentPortal() {
       } catch (error) {
         console.error("Error fetching student:", error);
       } finally {
-        setDataLoading(false); // Data mil gaya ya error aaya, loading khatam
+        setDataLoading(false);
       }
     };
 
     fetchStudent();
-  }, [user, authLoading]); // Dono par nazar rakhein
+  }, [user, authLoading]);
 
-  // Jab tak user confirm nahi hota, loading screen dikhaein
+  // ✅ REFRESH GUARD: Jab tak data nahi aata, ye screen nazar aayegi
   if (authLoading || dataLoading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f5f7fa' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f5f7fa', flexDirection: 'column' }}>
         <h2 style={{ color: '#132677' }}>Loading Dashboard...</h2>
+        <p style={{ color: '#64748b' }}> please wait.</p>
       </div>
     );
   }
@@ -56,7 +59,6 @@ export default function StudentPortal() {
         <StudentSidebar />
         <div className="std-main-content">
           <h1 className="std-dashboard-title">Student Dashboard</h1>
-
           <div className="std-welcome-card">
             <div className="std-welcome-content">
               <h2 className="std-welcome-title">Welcome Back!</h2>
