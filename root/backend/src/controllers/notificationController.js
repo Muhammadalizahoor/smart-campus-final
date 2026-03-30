@@ -1,71 +1,39 @@
 const { firestore } = require("../config/firebase");
-const transporter = require("../config/mailer");
 
+// 🚀 Notification bhejney ka record save karne ke liye
 exports.sendNotification = async (req, res) => {
   try {
     const { title, message } = req.body;
 
-    // 1. Firebase se saare students ke emails uthao
+    // Students count fetch karna (Record keeping ke liye)
     const snap = await firestore.collection("students").get();
-    
-    if (snap.empty) {
-      console.log("❌ No students found in Firestore");
-      return res.status(404).json({ message: "No students found in Database" });
-    }
+    const emailsCount = snap.docs.length;
 
-    const emails = snap.docs
-      .map(doc => doc.data().gmail || doc.data().email)
-      .filter(Boolean); // Khali fields nikal dega
-
-    if (emails.length === 0) {
-      return res.status(400).json({ message: "No valid emails found in students collection" });
-    }
-
-    console.log(`Attempting to send mail to ${emails.length} students...`);
-
-    // 2. Email Options (Bcc use kar rahe hain taake sab ko aik saath jaye)
-    const mailOptions = {
-      from: `"Smart Campus Transit" <${process.env.EMAIL_USER}>`,
-      bcc: emails, 
-      subject: title,
-      html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd;">
-          <h2 style="color: #2563eb;">${title}</h2>
-          <p>${message}</p>
-          <hr/>
-          <small>Smart Campus Transit System - Admin Update</small>
-        </div>
-      `
-    };
-
-    // 3. Email Send Karo
-    await transporter.sendMail(mailOptions);
-
-    // 4. Record ke liye notification Firestore mein bhi save kar lo
-    await firestore.collection("notifications").add({
+    // Notification history mein save karo
+    const newDoc = await firestore.collection("notifications").add({
       title,
       message,
       createdAt: new Date().toISOString(),
-      recipientsCount: emails.length
+      recipientsCount: emailsCount
     });
 
-    res.status(200).json({ success: true, message: `Notification sent to ${emails.length} students!` });
+    res.status(200).json({ 
+      success: true, 
+      message: "Notification record saved successfully",
+      id: newDoc.id 
+    });
 
   } catch (err) {
-    console.error("❌ NOTIFICATION ERROR:", err);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to send notification", 
-      error: err.message 
-    });
+    console.error("❌ BACKEND ERROR:", err);
+    res.status(500).json({ success: false, error: err.message });
   }
 };
 
-// History dikhane ke liye
+// History fetch karne ke liye
 exports.getAllNotifications = async (req, res) => {
   try {
     const snap = await firestore.collection("notifications").orderBy("createdAt", "desc").get();
-    res.json(snap.docs.map(d => d.data()));
+    res.json(snap.docs.map(d => ({ id: d.id, ...d.data() })));
   } catch (e) {
     res.json([]);
   }
