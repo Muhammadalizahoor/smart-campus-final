@@ -1,48 +1,24 @@
-// import React from "react";
-// //import Header from "../components/stdHeader";
-// import StudentSidebar from "../components/StudentSidebar";
-// import "../styles/admin-layout.css"; // IMPORTANT for layout spacing
-
-// export default function StudentPortal() {
-//   return (
-//     <div>
-//       {/* Top Header 
-//       <Header /> */}
-
-//       <div className="admin-content-wrapper">
-//         {/* Student Sidebar */}
-//         <StudentSidebar />
-
-//         {/* Main content area */}
-//         <div style={{ padding: "20px" }}>
-//           <h1>Student Dashboard</h1>
-//           <p>Welcome to the student portal.</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-
 "use client";
 import React, { useEffect, useState } from "react";
 import StudentSidebar from "../components/StudentSidebar";
 import { firestore } from "../services/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useAuth } from "../contexts/AuthContext"; // get logged-in user
-import "../styles/std-dashboard-welcome.css"; // student dashboard welcome styling
-
+import { useAuth } from "../contexts/AuthContext"; 
+import "../styles/std-dashboard-welcome.css"; 
 
 export default function StudentPortal() {
-  const { user } = useAuth(); // get logged-in student info
+  const { user, loading: authLoading } = useAuth(); // AuthContext se loading bhi nikaal lein
   const [studentName, setStudentName] = useState("");
+  const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     const fetchStudent = async () => {
-      if (!user?.email) return;
+      // Agar auth abhi load ho raha hai ya user nahi hai toh wait karein
+      if (authLoading) return;
+      if (!user?.email) {
+        setDataLoading(false);
+        return;
+      }
 
       try {
         const q = query(
@@ -57,23 +33,30 @@ export default function StudentPortal() {
         }
       } catch (error) {
         console.error("Error fetching student:", error);
+      } finally {
+        setDataLoading(false); // Data mil gaya ya error aaya, loading khatam
       }
     };
 
     fetchStudent();
-  }, [user?.email]);
+  }, [user, authLoading]); // Dono par nazar rakhein
+
+  // Jab tak user confirm nahi hota, loading screen dikhaein
+  if (authLoading || dataLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f5f7fa' }}>
+        <h2 style={{ color: '#132677' }}>Loading Dashboard...</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="std-portal-wrapper">
       <div className="std-content-wrapper">
-        {/* Student Sidebar */}
         <StudentSidebar />
-
-        {/* Main content area */}
         <div className="std-main-content">
           <h1 className="std-dashboard-title">Student Dashboard</h1>
 
-          {/* Welcome Card */}
           <div className="std-welcome-card">
             <div className="std-welcome-content">
               <h2 className="std-welcome-title">Welcome Back!</h2>
@@ -82,12 +65,8 @@ export default function StudentPortal() {
                 Hope you’re having a great day. Keep exploring, learning, and making the most of your time here.
               </p>
             </div>
-
-            <div className="std-welcome-illustration">
-              {/* Optional: image/SVG illustration */}
-            </div>
+            <div className="std-welcome-illustration"></div>
           </div>
-
         </div>
       </div>
     </div>
