@@ -9,7 +9,7 @@ import {
   Gauge,
   Clock,
   Calendar,
-  ChevronRight
+  ChevronRight // Naya icon link feel dene ke liye
 } from "lucide-react";
 
 import {
@@ -38,6 +38,7 @@ export default function ActiveAlerts() {
   
   const SPEED_THRESHOLD = 80;
 
+  // Stable formatting function
   const formatDateTime = (date) => {
     const d = date instanceof Date ? date : new Date();
     return {
@@ -49,21 +50,21 @@ export default function ActiveAlerts() {
   useEffect(() => {
     const unsubscribers = [];
 
-    // 1️⃣ RFID ERRORS (Updated with OrderBy to match History page)
+    // 1️⃣ RFID ERRORS
     const rfidQuery = query(
       collection(firestore, "entry_exit_logs"),
-      orderBy("timestamp", "desc"),
-      limit(10)
+      where("error", "in", ["ALREADY_INSIDE_OTHER_BUS", "EXIT_WITHOUT_ENTRY", "BUS_MISMATCH"]),
+      limit(5)
     );
     unsubscribers.push(onSnapshot(rfidQuery, (snap) => {
-      const list = snap.docs.filter(d => d.data().error).map(d => {
+      const list = snap.docs.map(d => {
         const x = d.data();
-        const dt = new Date(x.timestamp);
+        const dt = x.timestamp ? new Date(x.timestamp) : new Date();
         return {
           id: d.id,
           group: "rfid",
           type: "danger",
-          title: `Security: ${x.error.replace(/_/g, ' ')} (RFID: ${x.rfid})`,
+          title: `RFID ${x.rfid}: ${x.error.replace(/_/g, ' ').toLowerCase()}`,
           timeObj: dt,
           ...formatDateTime(dt),
           icon: <AlertTriangle size={20} />
@@ -72,21 +73,27 @@ export default function ActiveAlerts() {
       setAllAlerts(prev => ({ ...prev, rfid: list }));
     }));
 
-    // 2️⃣ COMPLAINTS (Removed status filter & added OrderBy to match History page)
-    const compQuery = query(
-      collection(firestore, "complaints"), 
-      orderBy("submittedOn", "desc"), 
-      limit(10)
-    );
+    // 2️⃣ PENDING COMPLAINTS
+    const compQuery = query(collection(firestore, "complaints"), where("status", "==", "Pending"), limit(5));
     unsubscribers.push(onSnapshot(compQuery, (snap) => {
       const list = snap.docs.map(d => {
         const x = d.data();
-        const dt = x.submittedOn?.toDate ? x.submittedOn.toDate() : new Date(x.submittedOn);
+        let dt;
+        if (x.submittedOn?.seconds) {
+            dt = new Date(x.submittedOn.seconds * 1000);
+        } else if (x.submittedOn) {
+            dt = new Date(x.submittedOn);
+        } else if (x.createdAt?.toDate) {
+            dt = x.createdAt.toDate();
+        } else {
+            dt = new Date(); 
+        }
+
         return {
           id: d.id,
           group: "complaint",
           type: "warning",
-          title: `Complaint: ${x.category}`,
+          title: `Complaint (${x.category})`,
           timeObj: dt,
           ...formatDateTime(dt),
           icon: <MessageSquareWarning size={20} />
@@ -99,20 +106,18 @@ export default function ActiveAlerts() {
     const occupancyQuery = collectionGroup(firestore, "latest");
     unsubscribers.push(onSnapshot(occupancyQuery, (snap) => {
       const list = snap.docs
-        .filter(d => d.data().currentPassengers > d.data().capacity)
-        .map(d => {
-            const x = d.data();
-            return {
-                id: `cap-${d.id}`,
-                group: "capacity",
-                type: "danger",
-                title: `Overcrowded: Bus ${x.busId} (${x.currentPassengers}/${x.capacity})`,
-                timeObj: new Date(), 
-                dateText: "Today",
-                timeText: "Live",
-                icon: <Users size={20} />
-            };
-        });
+        .map(d => d.data())
+        .filter(x => x.currentPassengers > x.capacity)
+        .map(x => ({
+            id: `cap-${x.busId}`,
+            group: "capacity",
+            type: "danger",
+            title: `Bus ${x.busId} Overcrowded (${x.currentPassengers}/${x.capacity})`,
+            timeObj: new Date(), 
+            dateText: "Today",
+            timeText: "Live",
+            icon: <Users size={20} />
+        }));
       setAllAlerts(prev => ({ ...prev, capacity: list }));
     }));
 
@@ -168,6 +173,7 @@ export default function ActiveAlerts() {
 
   return (
     <div className="active-alerts-container">
+      {/* 🚀 Clickable Header linked to your new History Page */}
       <div 
         className="alerts-header" 
         onClick={() => window.location.href = '/admin/alerts-history'}
