@@ -70,3 +70,94 @@
     width: 100% !important;
   }
 }
+
+/* =============================================
+   📱 SMART CAMPUS ULTIMATE HYBRID FIX (FOR ALI)
+   ============================================= */
+
+@media screen and (max-width: 768px) {
+  
+  /* 1. LOGIN PAGE: Form ko center aur fit karo */
+  .login-container, .auth-page, .login-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    padding: 15px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .login-card, .auth-card {
+    width: 100% !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+    padding: 25px !important;
+    position: relative !important;
+    left: 0 !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+  }
+
+  /* 2. SIDEBAR: Mobile par sidebar ko gayab karo (Margin Khatam) */
+  .sidebar {
+    display: none !important; /* Mobile par sidebar display nahi hoga */
+    width: 0 !important;
+  }
+
+  /* 3. MAIN CONTENT: Isay poori screen par phailao (No Sidebar Margin) */
+  .main-content, .dashboard-container, .page-container, .content-wrapper {
+    margin-left: 0 !important; /* 👈 Ye sab se zaroori hai dhakka khatam karne ke liye */
+    padding: 10px !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 4. STUDENT DASHBOARD: Welcome Card fix */
+  .welcome-card, .status-card, .info-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 10px 0 !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+  }
+
+  /* 5. STATS GRID: Cards ko ek ke neeche ek (Column) karo */
+  .stats-grid, .cards-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    width: 100% !important;
+  }
+
+  /* 6. MAP & TRACKING: Mobile height adjustment */
+  .map-container, .leaflet-container, #map, .tracking-box {
+    height: 300px !important; /* Mobile par map ki height fix */
+    width: 100% !important;
+    margin: 10px 0 !important;
+    border-radius: 10px !important;
+  }
+
+  /* 7. COMPLAINTS & TABLES: Scrollable for mobile */
+  .complaints-list, .alerts-table, .data-table {
+    display: block !important;
+    overflow-x: auto !important; /* Taake table phatay na */
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 8. TEXT & BUTTONS: Mobile friendly size */
+  h1, .student-name {
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+
+  input, button {
+    font-size: 16px !important; /* Mobile keyboard zoom-in fix */
+  }
+}
