@@ -1,3 +1,4 @@
+/* --- Base Styles (Laptop/Desktop) --- */
 .student-sidebar {
   width: 220px;
   background: #ffffff;
@@ -5,16 +6,69 @@
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 80px; /* space for header */
+  padding-top: 80px; 
   border-right: 1px solid #e5e7eb;
-  z-index: 10;
+  z-index: 1001;
+  transition: all 0.3s ease;
 }
 
 .student-content-wrapper {
-  padding-left: 240px; /* space for the student sidebar */
-  padding-top: 100px; /* space for header */
+  padding-left: 240px; /* Laptop space */
+  padding-top: 100px; 
   padding-right: 24px;
   padding-bottom: 30px;
   min-height: 100vh;
   background: #f5f7fa;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn {
+  display: none; /* Desktop par chhupa hua */
+}
+
+/* 📱 --- Mobile Responsive (Screens under 768px) --- */
+@media screen and (max-width: 768px) {
+  .student-sidebar {
+    transform: translateX(-100%); /* Sidebar bahar */
+    padding-top: 60px;
+  }
+
+  .student-sidebar.open {
+    transform: translateX(0); /* Sidebar andar */
+  }
+
+  .student-content-wrapper {
+    padding-left: 15px !important; /* Fixed 240px khatam! */
+    padding-right: 15px !important;
+    padding-top: 80px;
+    width: 100% !important;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1002;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 5px;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+  }
+
+  /* Welcome Card Fix */
+  .welcome-card, .dashboard-card {
+    width: 100% !important;
+    margin: 10px 0 !important;
+  }
 }

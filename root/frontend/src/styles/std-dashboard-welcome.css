@@ -1,5 +1,30 @@
-/* frontend/src/styles/std-dashboard-welcome.css */
+/* --- Global Wrapper --- */
+.std-portal-wrapper {
+  width: 100%;
+}
 
+.std-content-wrapper {
+  display: flex;
+}
+
+/* --- Main Content Area (The Hybrid Fix) --- */
+.std-main-content {
+  margin-left: 220px; /* Sidebar width for Laptop */
+  padding: 20px 30px; 
+  flex: 1;
+  min-height: 100vh;
+  background-color: #f5f7fa; 
+  transition: margin 0.3s ease;
+}
+
+.std-dashboard-title {
+  margin-top: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #132677;
+}
+
+/* --- Welcome Card (Flexible) --- */
 .std-welcome-card {
   background: #132677;
   border-radius: 16px;
@@ -11,19 +36,8 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
   position: relative;
-  max-width: 800px;
-  margin-left: 0;
-  margin-right: auto;
-  margin-top: 20px;
-}
-
-.std-welcome-illustration {
-  width: 400px;
-  height: 400px;
-  background-image: url("../assets/student-dash.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  max-width: 900px;
+  margin: 20px 0;
 }
 
 .std-welcome-content {
@@ -34,40 +48,61 @@
 .std-welcome-title {
   font-size: 20px;
   font-weight: 500;
-  line-height: 1.5;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .std-welcome-name {
-  font-size: 48px;
+  font-size: 42px; 
   font-weight: 700;
   margin-bottom: 12px;
+  line-height: 1.1;
 }
 
 .std-welcome-text {
   font-size: 16px;
   line-height: 1.5;
+  opacity: 0.9;
 }
 
-.std-dashboard-title {
-  margin-top: 24px;
-  font-size: 28px;
-  font-weight: 600;
+/* --- Illustration Fix --- */
+.std-welcome-illustration {
+  width: 300px; 
+  height: 300px;
+  background-image: url("../assets/student-dash.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.std-content-wrapper {
-  display: flex;
-}
+/* 📱 --- MOBILE RESPONSIVE (Screens under 768px) --- */
+@media screen and (max-width: 768px) {
+  .std-main-content {
+    margin-left: 0 !important; /* Fixed margin zero karo */
+    padding: 15px !important;
+  }
 
-/* FIX: This moves the main content area away from the fixed sidebar. */
-.std-main-content {
-  margin-left: 250px; /* Should match the width of your StudentSidebar */
-  padding: 20px 30px; 
-  flex: 1;
-  min-height: 100vh;
-  background-color: #f5f7fa; 
-}
+  .std-welcome-card {
+    flex-direction: column-reverse; /* Text upar, image niche */
+    text-align: center;
+    padding: 20px;
+  }
 
-.std-portal-wrapper {
-  width: 100%;
+  .std-welcome-illustration {
+    width: 100% !important; 
+    height: 180px !important; /* Mobile par image choti */
+    margin-bottom: 15px;
+  }
+
+  .std-welcome-name {
+    font-size: 28px !important; /* Naam chota taake fit aaye */
+  }
+
+  .std-welcome-title {
+    font-size: 18px !important;
+  }
+
+  .std-dashboard-title {
+    font-size: 22px !important;
+    text-align: center;
+  }
 }
