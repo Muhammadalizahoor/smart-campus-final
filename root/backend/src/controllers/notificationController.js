@@ -5,59 +5,63 @@ exports.sendNotification = async (req, res) => {
   try {
     const { title, message } = req.body;
 
-    if (!title || !message) {
-      return res.status(400).json({ message: "Title/Message missing" });
+    // 1. Firebase se saare students ke emails uthao
+    const snap = await firestore.collection("students").get();
+    
+    if (snap.empty) {
+      console.log("❌ No students found in Firestore");
+      return res.status(404).json({ message: "No students found in Database" });
     }
 
-    // 1️⃣ Save in Firestore (Admin panel ke liye)
+    const emails = snap.docs
+      .map(doc => doc.data().gmail || doc.data().email)
+      .filter(Boolean); // Khali fields nikal dega
+
+    if (emails.length === 0) {
+      return res.status(400).json({ message: "No valid emails found in students collection" });
+    }
+
+    console.log(`Attempting to send mail to ${emails.length} students...`);
+
+    // 2. Email Options (Bcc use kar rahe hain taake sab ko aik saath jaye)
+    const mailOptions = {
+      from: `"Smart Campus Transit" <${process.env.EMAIL_USER}>`,
+      bcc: emails, 
+      subject: title,
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd;">
+          <h2 style="color: #2563eb;">${title}</h2>
+          <p>${message}</p>
+          <hr/>
+          <small>Smart Campus Transit System - Admin Update</small>
+        </div>
+      `
+    };
+
+    // 3. Email Send Karo
+    await transporter.sendMail(mailOptions);
+
+    // 4. Record ke liye notification Firestore mein bhi save kar lo
     await firestore.collection("notifications").add({
       title,
       message,
       createdAt: new Date().toISOString(),
+      recipientsCount: emails.length
     });
 
-    // 2️⃣ Get student emails (Safe Way)
-    const snap = await firestore.collection("students").get();
-    
-    // Agar collection khali hai toh empty array ready rakho
-    let emails = [];
-    if (!snap.empty) {
-      emails = snap.docs
-        .map(doc => doc.data().gmail || doc.data().email) // gmail ya email dono check karega
-        .filter(Boolean); // Khali values nikal dega
-    }
-
-    // 3️⃣ Send Gmail (Only if emails exist)
-    if (emails.length > 0) {
-      await transporter.sendMail({
-        from: `"Smart Campus Transit" <${process.env.EMAIL_USER}>`,
-        to: emails.join(","), // Saare students ko aik saath
-        subject: title,
-        html: `
-          <div style="font-family: Arial; border: 1px solid #eee; padding: 20px;">
-            <h2 style="color: #1e40af;">${title}</h2>
-            <p>${message}</p>
-            <hr/>
-            <small>Smart Campus Transit System</small>
-          </div>
-        `,
-      });
-      return res.json({ message: `Success! Mail sent to ${emails.length} students.` });
-    } else {
-      // Agar Firebase mein koi student nahi mila toh error na do, message de do
-      return res.status(200).json({ message: "Notification saved, but no student emails found in Firebase." });
-    }
+    res.status(200).json({ success: true, message: `Notification sent to ${emails.length} students!` });
 
   } catch (err) {
-    console.error("DETAILED ERROR:", err);
+    console.error("❌ NOTIFICATION ERROR:", err);
     res.status(500).json({ 
-      message: "Server Error", 
-      error: err.message,
-      stack: err.stack // Taake humein pata chale kis line par masla hai
+      success: false, 
+      message: "Failed to send notification", 
+      error: err.message 
     });
   }
 };
 
+// History dikhane ke liye
 exports.getAllNotifications = async (req, res) => {
   try {
     const snap = await firestore.collection("notifications").orderBy("createdAt", "desc").get();
