@@ -91,22 +91,25 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="header-left">
+      <div 
+        className="header-left" 
+        onClick={() => alert("Please Control admin site on PC")}
+        style={{ cursor: 'pointer' }}
+      >
         <Menu size={24} />
       </div>
 
       <div className="header-right">
-        {/* DATE & TIME */}
         <div className="datetime">
           <p className="date">{date}</p>
           <p className="time">{time}</p>
         </div>
 
-        {/* USER INFO */}
         <div className="user-dropdown" ref={dropdownRef}>
           <div
             className="user-avatar-name"
             onClick={() => setDropdownOpen(!dropdownOpen)}
+            style={{ cursor: 'pointer' }}
           >
             <div className="user-avatar">
               {getInitials(userData?.name)}

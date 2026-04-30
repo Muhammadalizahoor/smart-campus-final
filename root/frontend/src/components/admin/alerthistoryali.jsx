@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react";
-// ✅ FIXED: Aapki file ka naam Sidebar.jsx hai
 import Sidebar from "../Sidebar"; 
 import { collection, query, getDocs, orderBy, collectionGroup } from "firebase/firestore";
-// ✅ FIXED: Firebase services ka path
 import { firestore } from "../../services/firebase"; 
 import { Gauge, AlertTriangle, Users, MessageSquareWarning, Calendar, Filter, Bus, Clock, ChevronRight } from "lucide-react";
 
@@ -76,13 +74,15 @@ export default function AlertsHistoryAli() {
   }, [filteredAlerts]);
 
   return (
-    <div style={{ display: "flex", background: "#f4f7fe", minHeight: "100vh" }}>
-      {/* ✅ Sidebar call updated */}
+    <div className="admin-page-container" style={{ display: "flex", background: "#f4f7fe", minHeight: "100vh" }}>
       <Sidebar />
-      <div style={{ flex: 1, padding: "100px 40px 40px 300px" }}>
+      <div className="main-content-area" style={{ flex: 1 }}>
         <style>{`
-          .history-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; border-left: 5px solid #132677; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+          /* Laptop/Desktop view */
+          .main-content-area { padding: 100px 40px 40px 300px; }
           .filter-bar { background: white; padding: 20px; border-radius: 15px; display: flex; gap: 20px; margin-bottom: 30px; }
+          
+          .history-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; border-left: 5px solid #132677; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
           .filter-box { display: flex; align-items: center; gap: 8px; background: #f1f5f9; padding: 8px 15px; border-radius: 8px; flex: 1; }
           .filter-box select, .filter-box input { background: transparent; border: none; outline: none; width: 100%; color: #132677; font-weight: 600; }
           .month-label { color: #132677; font-size: 20px; font-weight: 800; margin: 30px 0 15px 0; border-bottom: 2px solid #e2e8f0; }
@@ -91,6 +91,16 @@ export default function AlertsHistoryAli() {
           .badge-rfid { background: #ffedd5; color: #f97316; }
           .badge-complaint { background: #dbeafe; color: #1e40af; }
           .badge-overcrowd { background: #fef3c7; color: #b45309; }
+
+          /* 📱 Mobile Specific Fixes */
+          @media screen and (max-width: 768px) {
+            .main-content-area { padding: 90px 15px 20px 15px !important; }
+            .filter-bar { flex-direction: column !important; gap: 10px !important; padding: 15px !important; }
+            .filter-box { width: 100% !important; }
+            .history-card { gap: 10px !important; padding: 12px !important; }
+            .history-card h4 { font-size: 14px !important; }
+            h1 { font-size: 22px !important; text-align: center; }
+          }
         `}</style>
 
         <h1 style={{ color: "#132677", fontWeight: "800", marginBottom: "20px" }}>Violation History Logs</h1>
@@ -122,7 +132,7 @@ export default function AlertsHistoryAli() {
               <h2 className="month-label">{month}</h2>
               {groupedAlerts[month].map(a => (
                 <div key={a.id} className="history-card">
-                  <div style={{ background: '#f1f5f9', padding: '10px', borderRadius: '10px' }}>
+                  <div style={{ background: '#f1f5f9', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {a.group === "speed" && <Gauge size={22} color="#ef4444"/>}
                     {a.group === "rfid" && <AlertTriangle size={22} color="#f97316"/>}
                     {a.group === "complaint" && <MessageSquareWarning size={22} color="#1e40af"/>}
@@ -130,8 +140,12 @@ export default function AlertsHistoryAli() {
                   </div>
                   <div style={{ flex: 1 }}>
                     <h4 style={{ margin: 0, color: '#1e293b' }}>{a.title}</h4>
-                    <span style={{ fontSize: '12px', color: '#64748b' }}><Clock size={12}/> {a.time.toLocaleString()}</span>
-                    <span className={`badge badge-${a.group}`} style={{marginLeft:'10px'}}>{a.group}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginTop: '4px' }}>
+                      <span style={{ fontSize: '12px', color: '#64748b', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Clock size={12}/> {a.time.toLocaleString()}
+                      </span>
+                      <span className={`badge badge-${a.group}`}>{a.group}</span>
+                    </div>
                   </div>
                 </div>
               ))}

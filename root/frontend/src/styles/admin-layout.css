@@ -565,85 +565,76 @@
 }
 
 
+/* =======================================================
+    👑 ADMIN PORTAL MOBILE REPAIR (ALI BHAI SPECIAL)
+   ======================================================= */
 
-/* --- Purana Code (Same Info) --- */
-:root {
-    --complaint-primary-blue: #132677; 
-    --complaint-soft-bg: #f5f7fa; 
-    --complaint-border-color: #e0e0e0;
-}
-
-.com-admin-content-wrapper {
-    padding: 24px 20px 40px 20px;
-    margin-left: 290px;
-    margin-top: 60px; 
-    transition: margin-left 0.3s ease;
-    min-height: calc(100vh - 60px); 
-    background-color: #f8fafc; 
-    margin-right: 40px;
-}
-
-.com-kpi-cards-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
-}
-
-/* Complaint Detail Grid */
-.complaint-detail-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-}
-
-.complaint-admin-content-wrapper {
-    padding: 30px; 
-    padding-top: 90px; 
-    margin-left: 290px; 
-    background-color: var(--complaint-soft-bg);
-    min-height: 100vh;
-}
-
-/* Search bar width from your code */
-.com-search-input-group {
-    width: 770px;
-}
-
-.com-filter-select {
-    width: 350px;
-}
-
-/* 📱 MOBILE RESPONSIVE ADDITION (Ali ke liye) */
 @media screen and (max-width: 768px) {
-    .com-admin-content-wrapper,
-    .complaint-admin-content-wrapper {
+    /* 1. Sidebar ko Admin side pe hide karo */
+    .sidebar {
+        display: none !important;
+    }
+
+    /* 2. Admin Content ka dhakka khatam */
+    .admin-content-wrapper {
         margin-left: 0 !important;
-        margin-right: 0 !important;
-        padding: 15px !important;
-        padding-top: 80px !important;
+        padding-top: 100px !important; 
+        padding-left: 15px !important;
+        padding-right: 15px !important;
         width: 100% !important;
     }
 
-    .com-kpi-cards-row {
-        grid-template-columns: 1fr !important; /* Cards ek ke neechay ek */
+    /* 3. HEADER FIX: Menu aur Time ko sahi jagah pe rakho */
+    .header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 75px !important;
+        z-index: 2000 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0 15px !important;
+        background: white !important;
+        border-bottom: 1px solid #eee;
     }
 
-    .complaint-detail-grid {
-        grid-template-columns: 1fr !important; /* Detail page single column */
-    }
-
-    .com-search-input-group, 
-    .com-filter-select {
-        width: 100% !important; /* Fixed widths khatam */
-    }
-
-    .com-filter-controls-row {
+    /* TIME WAPIS LAO (Fix) */
+    .datetime {
+        display: flex !important; /* Ab time nazar aayega */
         flex-direction: column !important;
-        gap: 10px;
+        align-items: center !important;
+        margin-right: 10px !important;
     }
 
-    .com-complaints-log-container {
-        overflow-x: auto !important; /* Table scroll karegi */
+    .date { font-size: 10px !important; margin: 0 !important; color: #666 !important; }
+    .time { font-size: 13px !important; font-weight: bold !important; margin: 0 !important; color: #132677 !important; }
+
+    .header-left {
+        cursor: pointer !important;
+        z-index: 2001 !important;
+        padding: 5px !important;
+    }
+
+    .user-avatar-name {
+        gap: 5px !important;
+    }
+
+    .user-name-header {
+        display: none !important; /* Mobile pe sirf avatar dikhao taake time ki jagah banay */
+    }
+
+    /* 4. DASHBOARD CARDS FIX: Ek ke niche ek */
+    .two-col-wrapper {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .left-col, .right-col {
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
