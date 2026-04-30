@@ -563,3 +563,87 @@
     background-position: right 10px center;
     background-size: 16px;
 }
+
+
+
+/* --- Purana Code (Same Info) --- */
+:root {
+    --complaint-primary-blue: #132677; 
+    --complaint-soft-bg: #f5f7fa; 
+    --complaint-border-color: #e0e0e0;
+}
+
+.com-admin-content-wrapper {
+    padding: 24px 20px 40px 20px;
+    margin-left: 290px;
+    margin-top: 60px; 
+    transition: margin-left 0.3s ease;
+    min-height: calc(100vh - 60px); 
+    background-color: #f8fafc; 
+    margin-right: 40px;
+}
+
+.com-kpi-cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Complaint Detail Grid */
+.complaint-detail-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.complaint-admin-content-wrapper {
+    padding: 30px; 
+    padding-top: 90px; 
+    margin-left: 290px; 
+    background-color: var(--complaint-soft-bg);
+    min-height: 100vh;
+}
+
+/* Search bar width from your code */
+.com-search-input-group {
+    width: 770px;
+}
+
+.com-filter-select {
+    width: 350px;
+}
+
+/* 📱 MOBILE RESPONSIVE ADDITION (Ali ke liye) */
+@media screen and (max-width: 768px) {
+    .com-admin-content-wrapper,
+    .complaint-admin-content-wrapper {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 15px !important;
+        padding-top: 80px !important;
+        width: 100% !important;
+    }
+
+    .com-kpi-cards-row {
+        grid-template-columns: 1fr !important; /* Cards ek ke neechay ek */
+    }
+
+    .complaint-detail-grid {
+        grid-template-columns: 1fr !important; /* Detail page single column */
+    }
+
+    .com-search-input-group, 
+    .com-filter-select {
+        width: 100% !important; /* Fixed widths khatam */
+    }
+
+    .com-filter-controls-row {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+
+    .com-complaints-log-container {
+        overflow-x: auto !important; /* Table scroll karegi */
+    }
+}
